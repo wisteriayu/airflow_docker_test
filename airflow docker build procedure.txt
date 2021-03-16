@@ -1,0 +1,17 @@
+# docker build procedure
+
+docker pull puckel/docker-airflow
+
+docker run -d -p 8080:8080 puckel/docker-airflow webserver
+
+docker ps
+
+docker exec -ti <name of image> bash
+
+#*************************
+
+docker build -t test/cdsw:v1 .
+
+docker run -it test/cdsw:v1 bash
+
+pip list
