@@ -1,17 +1,9 @@
-# docker build procedure
+docker build -t cdsw_test:v1 .
 
-docker pull puckel/docker-airflow
+docker run -d -p 8080:8080 cdsw_test:v1 webserver
+# the command raises error:
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: exec: "webserver": executable file not found in $PATH: unknown.
 
-docker run -d -p 8080:8080 puckel/docker-airflow webserver
+docker run -it cdsw_test:v1 bash
 
-docker ps
-
-docker exec -ti <name of image> bash
-
-#*************************
-
-docker build -t test/cdsw:v1 .
-
-docker run -it test/cdsw:v1 bash
-
-pip list
+pip3 list

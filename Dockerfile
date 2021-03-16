@@ -10,10 +10,9 @@ Run apt-get update && \
         libffi6 \
         libsasl2-2 \
         libsasl2-modules \
-        libssl1.1 \
         locales  \
         lsb-release \
         sasl2-bin \
         sqlite3 \
         unixodbc && \ 
-	pip install airflow
+	pip3 install apache-airflow
