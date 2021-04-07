@@ -1,9 +1,44 @@
-docker build -t cdsw_test:v1 .
 
-docker run -d -p 8080:8080 cdsw_test:v1 webserver
-# the command raises error:
-docker: Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: exec: "webserver": executable file not found in $PATH: unknown.
+docker build -t <image_name:image_version> .
 
-docker run -it cdsw_test:v1 bash
+# start airflow docker image 
+docker run -d -p 8080:8080 -it <image_name> bash
 
-pip3 list
+docker ps -a
+
+docker exec -ti <name of image> bash
+
+airflow db init
+
+airflow users create \
+    --username admin \
+    --firstname Peter \
+    --lastname Parker \
+    --role Admin \
+    --email spiderman@superhero.org
+# password: password
+
+airflow webserver --port 8080 #http://172.22.104.226:8080/
+
+
+#***************************
+# get local ip address
+ifconfig
+172.22.104.226
+
+# set docker access right
+cd /var/run
+sudo chmod 666 docker.sock
+
+# delete stopped containers
+docker rm $(docker ps --filter status=exited -q)
+# delete running containers
+docker rm --force <container_name>
+
+#*************************
+
+# bash show existing repository
+grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*
+
+# ubuntu get available resources
+apt-cache policy <package_name>
